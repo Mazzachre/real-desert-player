@@ -10,7 +10,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
-find_package(Qt6 REQUIRED COMPONENTS Core X11Extras)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(X11 REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
