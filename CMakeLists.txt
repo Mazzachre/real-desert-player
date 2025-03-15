@@ -1,35 +1,42 @@
 cmake_minimum_required(VERSION 3.16)
-project(desert-player)
 
-find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
+project(real-desert-player)
+
+find_package(ECM CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(FeatureSummary)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEClangFormat)
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt5 CONFIG COMPONENTS Core Widgets Qml Quick DBus REQUIRED)
 find_package(X11 REQUIRED)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 add_executable(real-desert-player)
 
-target_sources(real-desert-player
+target_sources(
+	real-desert-player
 	PRIVATE
 	src/main.cpp
-	src/app/app.cpp
-	src/ui/keep_alive.cpp
+	src/app/application.cpp
+	src/app/playback.cpp
+	src/player/player.cpp
 	src/resources.qrc
 )
 
-target_link_libraries(real-desert-player
-	Qt6::Core
-	Qt6::X11Extras
+target_link_libraries(
+	real-desert-player
+	Qt5::Core
+	Qt5::Widgets
+	Qt5::Qml
+	Qt5::Quick
+	Qt5::DBus
 	X11
 )
 

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="player.qml">qml/player/player.qml</file>
+    </qresource>
+</RCC>
+
